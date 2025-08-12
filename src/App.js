@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import React from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import LayoutNoNav from './components/nav_section/LayoutNoNav'
+import LayoutwithNav from './components/nav_section/LayoutwithNav'
+import Home from './components/Home'
+import ProductDetail from './components/ProductDetail'
+import Explore from './components/Explore'
+import Beverage from './components/Beverage'
+import Filters from './components/Filters'
+import Cart from './components/Cart'
+import Favorite from './components/Favorite'
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+      <Routes>
+        <Route element={<LayoutwithNav/>}>
+          <Route path='/' element={<Home />} />
+          <Route path='/explore' element={<Explore />} />
+          <Route path='/cart' element={<Cart />} />
+          <Route path='/favorite' element={<Favorite/>}/>
+        </Route>
+
+        <Route element={<LayoutNoNav/>}>
+          <Route path='/apple_info' element={<ProductDetail />} />
+          <Route path='/beverages' element={<Beverage/>}/>
+          <Route path='/filters' element={<Filters/>}/>
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App
